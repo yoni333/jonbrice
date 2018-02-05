@@ -1,13 +1,13 @@
 
 
 
-function child( cb ){
+function child( cb  ,cb2  ){
 
     console.log (" i am child function");
 
-    cb();
-
-
+    var a= cb; //cb = parent 
+    a();
+  
 }
 
 
@@ -19,6 +19,18 @@ function parent(){
 
 }
 
-child(parent);
+function parent2(){
 
-child(  function(){ console.log("i am anonimus function - you can send me too as callback")}   );
+    console.log (" i am parent2/utils function. you can send me to any function you need");
+
+
+}
+
+
+
+child(parent ,parent2);
+
+child(  function (){ 
+    console.log("i am anonimus function - you can send me too as callback")}  
+ );
+
