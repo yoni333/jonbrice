@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+</head>
+<body>
+    <h1>ajax page</h1>
+    <div id="answer" >answer here</div>
+    insert ID<input id="elm" type="text">
+    <button id="ajax">AJAX</button>
+    <script>
+    
+        $(document).ready(function(){
+
+             $('#ajax').click( ajax )
+
+        })
+
+        function ajax(){
+
+                var id = $("#elm").val();
+
+            // $.get("test.php?id=5&user=yoni" +id , function(data, status){
+                
+            //     var text =   $('#answer').text();
+            //     $('#answer').text( text + '  ' + data);
+            //     console.log("Data: " + data + "\nStatus: " + status);
+            // });
+
+
+            $.ajax({
+                url :"test.php2",
+                method :"GET",
+                data:{ id: "5"},
+                context: $("#answer")[0]
+               // $("#answer") !== document.getElementById('answer')
+               // $("#answer")[0]=== document.getElementById('answer')
+             
+            }).done(function( data ) {
+
+              //  $('#answer').text(data);
+                $( this ).text( data );
+                }
+            
+            ).error(function(status){
+
+                console.log("error")
+                console.log( status )
+                alert ("server didnt get your request")
+            })
+
+
+        }
+    
+    </script>
+</body>
+</html>

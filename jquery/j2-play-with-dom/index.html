@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="./jquery-ui.js"></script>
+    <link rel="stylesheet" href="./jquery-ui.css">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
   
     <style>
@@ -18,6 +20,7 @@
 <body>
     
     <div class="container">
+        <div id="nav"></div>
         <div class="row">
             
             <div id="ELM" class="second">0</div>
@@ -25,8 +28,18 @@
             <div class="col-xs-3">2</div>
             <div class="col-xs-3">3</div>
         </div>
+
+        <div class="row">
+            
+            <input type="text" id="inp" name="test">
+            <div id="ex1" class="col-xs-3  ex2">1</div>
+            <div  id="ex2"  class="col-xs-3 ex2"> 2 </div>
+            <div  id="ex3" class="col-xs-3 ex2">3</div>
+
+        </div>
+
     </div>
-   
+   <button id="changeBTN" >change name</button>
     <script src="./main.js"></script>
     <script src="./event.js"></script>
   
