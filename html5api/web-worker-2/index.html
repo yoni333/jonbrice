@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>worker 2</title>
+ 
+    <script type="text/javascript">
+       
+            if (!window.Worker)
+            {
+                alert("This browser doesn't support Web Workers!");
+              
+            }
+
+           function startWorker() {
+                var worker = new Worker("./worker.js");
+                worker.addEventListener("message", function (evt) {
+                   // alert(evt.data);
+                   console.log(evt.data);
+                },false);
+              
+                window.onmessage=function (evt) {
+                   console.log('window event ' + evt.data);
+                }
+                worker.postMessage(3000);
+            }
+
+    </script>
+</head>
+<body>
+    <form>
+        <input onClick="startWorker()" type="button" id="btnStart" value="Start Processing" />
+    </form>
+</body>
+</html>

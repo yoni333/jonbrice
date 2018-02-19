@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="result"></div>
+    <button onClick="terminate();">terminate</button>
+
+    <script src="./worker.js"></script>
+
+    <script>
+
+        if (typeof (Worker) !== "undefined") {
+            console.log(' Yes! Web worker support in the browser!');
+            runWebWorker()
+
+        } else {
+            console.log(' Sorry! No Web Worker support..')
+        }
+
+        function runWebWorker() {
+
+            if (typeof (w) == "undefined") {
+                window.w = new Worker("worker.js");
+            }
+
+
+
+        }
+
+       window.w.onmessage = function(event){
+    document.getElementById("result").innerHTML = event.data;
+};
+function terminate(){
+    window.w.terminate();
+    window.w ="undefined";
+}
+    </script>
+</body>
+
+</html>
