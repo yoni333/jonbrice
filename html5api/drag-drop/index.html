@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <!--make an element dragable by adding 'draggable' attribute -->
+    <!--What to Drag - ondragstart Native Event and setData() -->
+    <img id="imgElm" draggable="true" ondragstart="drag(event)" />
+  
+    
+    <!-- in the drop zone we need to do 2 actions
+    1)  to allow droping - because by default it forbiddn
+    2) attach function to the 'ondrop' native Event -->
+    <img id="imgDropZone" ondrop="drop(event)" ondragover="allowDrop(event)" />
+
+
+    <script>
+
+
+        function styleImg(elm , img){
+            elm.float ='left';
+            elm.width = "150";
+        elm.height = "100";
+        elm.src =  img  ;
+        elm.style['border-style'] = 'solid';
+        elm.style['border-color'] = 'yellowgreen';
+
+
+        }
+        var imgElm = document.getElementById('imgElm');
+        styleImg(imgElm , './fiat.jpg');
+        var imgDropZone = document.getElementById('imgDropZone');
+        styleImg(imgDropZone , '');
+     
+    
+        function drag(ev){
+            console.log('this is what we drag');
+            ev.dataTransfer.setData("text",'./fiat.jpg');
+          
+          //  ev.dataTransfer.setData("text", ev.target.id);
+                console.log(ev);
+
+        }
+
+        function allowDrop(ev) {
+            console.log('now we can drop here object');
+                ev.preventDefault();
+            }
+        
+            function drop(ev){
+                ev.preventDefault();
+                console.log('this is the dropping!!');
+                console.log(ev);
+                
+                var data = ev.dataTransfer.getData("text");
+                console.log(data);
+                imgElm.src=''; // this long way is the reason in w3c the use appendChild
+                //pay atenntion that append child -cut object!!!!
+                imgDropZone.src=data;
+
+            }
+    
+    </script>
+</body>
+</html>
