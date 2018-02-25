@@ -1,4 +1,30 @@
+#default file loader for current folder 
+DirectoryIndex first.html index.html
+
+#cancel folder listing
+Options -Indexes
+
+#add server password
+#generete here
+# http://www.htaccesstools.com/htaccess-authentication/
+AuthType Basic
+AuthName "Access to the Hidden Files"
+AuthUserFile "C:\xampp\htdocs\jquery\RESTful\.htpasswd
+Require valid-user
+
+#add header , the X- is just practice way to say "i am not official header"
+Header add X-yoni "Header Value"
+
+#ErrorDocument need full path!
+ErrorDocument 404 /jquery/RESTful/error404.html
+
 <IfModule mod_rewrite.c>
+#check if mod_rewrite is enabled -->  <?php phpinfo(); ?>
 RewriteEngine on
-RewriteRule ^.+$ /index.php [L]
+#RewriteRule ^about$ api.php [NC]
+# [NC] is a flag for ignore capital letters
+#RewriteRule "index.html" "api.php"
+
+#RewriteRule ^shirt/summer$ api.php?item=shirt&season=summer
+RewriteRule ^([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)$ api.php?param1=$1&parm2=$2&param3=$3 [QSA]
 </IfModule>
