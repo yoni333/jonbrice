@@ -26,5 +26,9 @@ RewriteEngine on
 #RewriteRule "index.html" "api.php"
 
 #RewriteRule ^shirt/summer$ api.php?item=shirt&season=summer
-RewriteRule ^([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)$ api.php?param1=$1&parm2=$2&param3=$3 [QSA]
+# consts depth of 3 vars
+#RewriteRule ^([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)$ api.php?param1=$1&parm2=$2&param3=$3 [NC]
+#dynamic URI depth
+RewriteRule ^(.*)$ api.php?param1=$1 [NC]
+
 </IfModule>

@@ -7,8 +7,8 @@ function echobr($arr){
 }
 echo  "api router";
 echobr($_GET);
-
-$paths= explode( "/" , $_SERVER['REQUEST_URI']);
+echo "URI after explode";
+$paths= explode( "/" , $_GET['param1']);
 echobr($paths);
 
 ?>

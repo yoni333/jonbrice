@@ -1,0 +1,6 @@
+
+<IfModule mod_rewrite.c>
+#check if mod_rewrite is enabled -->  <?php phpinfo(); ?>
+RewriteEngine on
+RewriteRule ^(.*)$ index.php?param1=$1 [QSA]
+</IfModule>
