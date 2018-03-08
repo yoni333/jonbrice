@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+    <script src="./jquery.js"></script>
+    <script src="./bootstrap/js/bootstrap.js"></script>
+</head>
+
+<body>
+
+    <h1>advanced js ls 1</h1>
+    <div class="item">
+        <h3>object constructor</h3>
+
+
+    </div>
+    <script>
+        //simple function constructor
+        var star = '*********************';
+        console.log(star + 'simple function constructor' + star)
+
+        function Car(model, year, miles) {
+
+            this.model = model;
+            this.year = year;
+            this.miles = miles;
+
+            this.toString = function () {
+                return this.model + " has done " + this.miles + " miles";
+            };
+        }
+
+        var civic = new Car("Honda Civic", 2009, 20000);
+
+        // Usage:
+
+        // We can create new instances of the car
+
+        var mondeo = new Car("Ford Mondeo", 2010, 5000);
+
+        // and then open our browser console to view the
+        // output of the toString() method being called on
+        // these objects
+        console.log(civic.toString());
+        console.log(mondeo.toString());
+
+
+        //get type of object
+        console.log("is civic is type of Car instance  -> " + (civic instanceof Car));
+    </script>
+
+    <script>
+        //function constructor with prototype
+        //the proto is added after the object was created and still - the object know the new prototype
+        console.log(star + 'function constructor with prototype' + star);
+
+        function Car(model, year, miles) {
+
+            this.model = model;
+            this.year = year;
+            this.miles = miles;
+
+            this.toString = function () {
+                return this.model + " has done " + this.miles + " miles";
+            };
+        }
+
+        var toyota = new Car("toyota ", 2019, 20000);
+        // Note here that we are using Object.prototype.newMethod rather than
+        // Object.prototype so as to avoid redefining the prototype object
+        try {
+            console.log(toyota.thank()); // here it is to early!!
+        } catch (err) {
+            console.log('כאן זה מוקדם מדי כיוון שעדיין לא הגדרנו את הפרוטוטייפ ונקבל שגיאה');
+            console.log(err);
+        }
+        Car.prototype.thank = function () {
+            return "thank for  buying " + this.model;
+        };
+        // Usage:
+
+        // We can create new instances of the car
+
+        var renualt = new Car("renualt megan", 2012, 6000);
+
+        // and then open our browser console to view the
+        // output of the toString() method being called on
+        // these objects
+        console.log(toyota.toString());
+        console.log(renualt.toString());
+        console.log('כעת אפשר להשתמש בפרוטו');
+        console.log(toyota.thank());
+
+        //get type of object
+        console.log("is toyota is type of Car instance  -> " + (toyota instanceof Car));
+    </script>
+
+
+    <script>
+        // 3 basic way to create object
+        console.log(star + 'שלושה דרכים נוספות ליצור אובייקט' + star);
+        //1 - literal
+        console.log('1 - literal');
+       var  literalOBJ = {
+            car: 'subaro',
+            year: '1982',
+            getInfo: function () {
+                console.log(`    type is ${this.car} created on ${this.year}`);
+            }
+        }
+       literalOBJ.getInfo();
+       console.log ('כאשר אנחנו יוצרים אובייקט על יד {} באופן ליטרלי הוא יורש את הפרוטוטייפ שלו מהאוביקט הכללי ');
+       console.log('Object');
+        console.log(star + '2 - Object.create' +star );
+        console.log( 'Object.create ' + ' כאשר יוצרים אובייקט עם  ' ) ;
+        console.log( ' הפרמטר הראשון הוא הפרוטוטייפ והפרמטר השני הוא תכונות מקומיות ');
+        var subaru = Object.create( literalOBJ , { 
+            maxspeed:{value:'180' ,writable:false}
+            //how to define property
+            //https://stackoverflow.com/questions/37672693/whats-the-proper-way-of-using-property-descriptors-in-object-create
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties
+        });
+        subaru.year=1950;
+        console.log(subaru)
+    </script>
+
+    <script>
+        
+        //create object without inhert prototype
+        console.log ( star + 'יצירת אובייקט ללא שיירש את מחלקת הפרוטוטייפ של האובייקט ' + star);
+        console.log( 'נעשה על די העברת פרמטר ראשון נול בעת יצירת האובייקט')
+        var noProto = Object.create(null , {name:{value:'yoni' , writable:true }});
+        console.log(noProto);
+
+    
+    </script>
+
+    <script>
+        console.log (star + 'שימוש ב new Object({})' +star);
+        console.log('using newObj is equal to literal form {} and it will ');
+        console.log('pay attention that if you pass allready exist object it will not clone it! it will create only refernce')
+        var newObj = new Object(civic);
+        console.log(newObj);
+        console.log('שימו לב שהפרוטוטייפ של מכונית לא נמצא כאן!!');
+        console.log('pay attention to the instantof -> newObj instanceof  Car');
+        console.log( (newObj instanceof  Car) );
+        console.log( (newObj instanceof  Object) );
+    </script>
+
+<script>
+//sub class
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype
+console.log(star + "יצירת ירושה בין אובייקטים "+ star);
+console.log("אין בג'אווה סקריפט ירושה בין אובייקטים על מנת לקבל את האפקט הזה יש להשתמש בפרוטוטייפ");
+var Person = function(name) {
+  this.name = name;
+  this.canTalk = true;
+};
+
+Person.prototype.greet = function() {
+  if (this.canTalk) {
+    console.log('Hi, I am ' + this.name);
+  }
+};
+
+var Employee = function(name, title) {
+  Person.call(this, name); // .call  pass to the function as first param the 'this' 
+  this.title = title;
+};
+console.log('we dont now the greet function from the proto');
+emp_no_proto = new Employee();
+console.log(  emp_no_proto) ;
+Employee.prototype = Object.create(Person.prototype);
+console.log(' now we have the greet function from the proto');
+emp_proto = new Employee()
+console.log( emp_proto) ;
+
+console.log ('תת מחלקות לא באמת יורשות את המחלקות האם שלהם אלא רק יוצרות ייחוס בזכרון אליהם לכן כאשר מחלקות האם משתנות אז גם הייחוס -פרוטוטייפ משתנה')
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

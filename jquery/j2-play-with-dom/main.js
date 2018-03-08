@@ -46,6 +46,7 @@ $( ".row" ).effect( 'clip', '', 2500 );
              var answer =   '<h1>'+   $('#inp').val() +'</h1>';
 
             console.log(answer);
+            //chaining example
            obj = {
                 a:function (){
                     console.log('a');
