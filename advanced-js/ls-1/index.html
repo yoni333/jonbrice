@@ -106,99 +106,148 @@
         console.log(star + 'שלושה דרכים נוספות ליצור אובייקט' + star);
         //1 - literal
         console.log('1 - literal');
-       var  literalOBJ = {
+        var literalOBJ = {
             car: 'subaro',
             year: '1982',
             getInfo: function () {
                 console.log(`    type is ${this.car} created on ${this.year}`);
             }
         }
-       literalOBJ.getInfo();
-       console.log ('כאשר אנחנו יוצרים אובייקט על יד {} באופן ליטרלי הוא יורש את הפרוטוטייפ שלו מהאוביקט הכללי ');
-       console.log('Object');
-        console.log(star + '2 - Object.create' +star );
-        console.log( 'Object.create ' + ' כאשר יוצרים אובייקט עם  ' ) ;
-        console.log( ' הפרמטר הראשון הוא הפרוטוטייפ והפרמטר השני הוא תכונות מקומיות ');
-        var subaru = Object.create( literalOBJ , { 
-            maxspeed:{value:'180' ,writable:false}
+        literalOBJ.getInfo();
+        console.log('כאשר אנחנו יוצרים אובייקט על יד {} באופן ליטרלי הוא יורש את הפרוטוטייפ שלו מהאוביקט הכללי ');
+        console.log('Object');
+        console.log(star + '2 - Object.create' + star);
+        console.log('Object.create ' + ' כאשר יוצרים אובייקט עם  ');
+        console.log(' הפרמטר הראשון הוא הפרוטוטייפ והפרמטר השני הוא תכונות מקומיות ');
+        var subaru = Object.create(literalOBJ, {
+            maxspeed: {
+                value: '180',
+                writable: false
+            }
             //how to define property
             //https://stackoverflow.com/questions/37672693/whats-the-proper-way-of-using-property-descriptors-in-object-create
             //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties
         });
-        subaru.year=1950;
-        console.log(subaru)
-    </script>
-
-    <script>
+        subaru.year = 1950;
+        console.log(subaru);
         
-        //create object without inhert prototype
-        console.log ( star + 'יצירת אובייקט ללא שיירש את מחלקת הפרוטוטייפ של האובייקט ' + star);
-        console.log( 'נעשה על די העברת פרמטר ראשון נול בעת יצירת האובייקט')
-        var noProto = Object.create(null , {name:{value:'yoni' , writable:true }});
-        console.log(noProto);
+        console.log('היכן מתבטא ההבדל בין תכונות של האובייקט לבין תכונות שירש בפרוטו')
+        console.log('loop over object keys include proto ');
+        for (key in subaru){
+            console.log( 'key = ' + key + " value = " + subaru[key]);
+        }
 
-    
+         console.log('loop over object keys without proto ');
+        for (key in subaru){
+            if( subaru.hasOwnProperty(key) ){
+
+                      console.log( 'key = ' + key + " value = " + subaru[key]);
+            }
+          
+        }
+        
     </script>
 
     <script>
-        console.log (star + 'שימוש ב new Object({})' +star);
+        //create object without inhert prototype
+        console.log(star + 'יצירת אובייקט ללא שיירש את מחלקת הפרוטוטייפ של האובייקט ' + star);
+        console.log('נעשה על די העברת פרמטר ראשון נול בעת יצירת האובייקט')
+        var noProto = Object.create(null, {
+            name: {
+                value: 'yoni',
+                writable: true
+            }
+        });
+        console.log(noProto);
+    </script>
+
+    <script>
+        console.log(star + 'שימוש ב new Object({})' + star);
         console.log('using newObj is equal to literal form {} and it will ');
-        console.log('pay attention that if you pass allready exist object it will not clone it! it will create only refernce')
+        console.log(
+            'pay attention that if you pass allready exist object it will not clone it! it will create only refernce'
+        )
         var newObj = new Object(civic);
         console.log(newObj);
         console.log('שימו לב שהפרוטוטייפ של מכונית לא נמצא כאן!!');
         console.log('pay attention to the instantof -> newObj instanceof  Car');
-        console.log( (newObj instanceof  Car) );
-        console.log( (newObj instanceof  Object) );
+        console.log((newObj instanceof Car));
+        console.log((newObj instanceof Object));
     </script>
 
-<script>
-//sub class
-//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype
-console.log(star + "יצירת ירושה בין אובייקטים "+ star);
-console.log("אין בג'אווה סקריפט ירושה בין אובייקטים על מנת לקבל את האפקט הזה יש להשתמש בפרוטוטייפ");
-var Person = function(name) {
-  this.name = name;
-  this.canTalk = true;
-};
+    <script>
+        //sub class
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype
+        console.log(star + "יצירת ירושה בין אובייקטים " + star);
+        console.log("אין בג'אווה סקריפט ירושה בין אובייקטים על מנת לקבל את האפקט הזה יש להשתמש בפרוטוטייפ");
+        var Person = function (name) {
+            this.name = name;
+            this.canTalk = true;
+        };
 
-Person.prototype.greet = function() {
-  if (this.canTalk) {
-    console.log('Hi, I am ' + this.name);
-  }
-};
+        Person.prototype.greet = function () {
+            if (this.canTalk) {
+                console.log('Hi, I am ' + this.name);
+            }
+        };
 
-var Employee = function(name, title) {
-  Person.call(this, name); // .call  pass to the function as first param the 'this' 
-  this.title = title;
-};
-console.log('we dont now the greet function from the proto');
-emp_no_proto = new Employee();
-console.log(  emp_no_proto) ;
-Employee.prototype = Object.create(Person.prototype);
-console.log(' now we have the greet function from the proto');
-emp_proto = new Employee()
-console.log( emp_proto) ;
+        var Employee = function (name, title) {
+            Person.call(this, name); // .call  pass to the function as first param the 'this' 
+            this.title = title;
+        };
+        console.log('we dont now the greet function from the proto');
+        emp_no_proto = new Employee();
+        console.log(emp_no_proto);
+        Employee.prototype = Object.create(Person.prototype);
+        console.log(' now we have the greet function from the proto');
+        emp_proto = new Employee()
+        console.log(emp_proto);
 
-console.log ('תת מחלקות לא באמת יורשות את המחלקות האם שלהם אלא רק יוצרות ייחוס בזכרון אליהם לכן כאשר מחלקות האם משתנות אז גם הייחוס -פרוטוטייפ משתנה')
+        console.log(
+            'תת מחלקות לא באמת יורשות את המחלקות האם שלהם אלא רק יוצרות ייחוס בזכרון אליהם לכן כאשר מחלקות האם משתנות אז גם הייחוס -פרוטוטייפ משתנה'
+        )
+    </script>
 
+    <script>
+        //dif between prototype and __proto__
+        //answer was taken from here 
+        //https://stackoverflow.com/questions/9959727/proto-vs-prototype-in-javascript
+        console.log(" מה ההבדל בין פרוטוטייפ לבין התכונה __פרוטו__ שנמצאת בפועל באובייקטים ");
+        console.log(
+            ' __proto__ is the actual object that is used in the lookup chain to resolve methods, etc.  prototype is the object that is used to build __proto__ when you create an object with new'
+        );
+        console.log(
+            'prototype is a property of a Function object. It is the prototype of objects constructed by that function. __proto__ is internal property of an object, pointing to its prototype'
+        );
+    </script>
 
+    <script>
+        //automatic getter and setter with defineProperty
+        console.log(star + 'automatic getter and setter with defineProperty' + star)
 
-</script>
+        function Book(name) {
+            Object.defineProperty(this, "name", {
+                get: function () {
+                    return "Book: " + name;
+                },
+                set: function (newName) {
+                    name = newName;
+                },
+                configurable: false
+            });
+        }
 
-<script>
-//dif between prototype and __proto__
-//answer was taken from here 
-//https://stackoverflow.com/questions/9959727/proto-vs-prototype-in-javascript
-console.log(" מה ההבדל בין פרוטוטייפ לבין התכונה __פרוטו__ שנמצאת בפועל באובייקטים ");
-console.log(' __proto__ is the actual object that is used in the lookup chain to resolve methods, etc.  prototype is the object that is used to build __proto__ when you create an object with new');
-console.log('prototype is a property of a Function object. It is the prototype of objects constructed by that function. __proto__ is internal property of an object, pointing to its prototype');
+        var myBook = new Book("Single Page Web Applications");
+        console.log(myBook.name); // Book: Single Page Web Applications
 
+        // we cannot delete the name property because "configurable" is set to false
+        delete myBook.name;
+        console.log(myBook.name); // Book: Single Page Web Applications
 
-
-
-
-</script>
+        // but we can change the value of the name property
+        myBook.name = "Testable JavaScript";
+        console.log(myBook.name); // Book: Testable JavaScript
+    </script>
 
 
 </body>
