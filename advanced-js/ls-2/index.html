@@ -1,105 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-    //classical prototypal 
-    console.log('classical prototypal - the wrong way');
+        //classical prototypal 
+        console.log('classical prototypal - the wrong way');
 
-    var Human = {
-         height:null
-        ,weight:null
-        ,firstName:null
-        ,familyName:null
-        ,getFullName:function(){
-            return this.firstName +" " + this.familyName;
+        var Human = {
+            height: null,
+            weight: null,
+            firstName: null,
+            familyName: null,
+            getFullName: function () {
+                return this.firstName + " " + this.familyName;
+            },
+            printFullName: function () {
+                console.log(this.getFullName());
+            }
         }
-        ,printFullName:function(){
-            console.log(this.getFullName());
+
+        //inherits Human into prototype
+        var Musician = Object.create(Human);
+        Musician.instrument = "drums";
+        Musician.playInstrument = function () {
+            return "play on " + this.instrument;
         }
-    }
 
-    //inherits Human into prototype
-    var Musician = Object.create(Human);
-    Musician.instrument = "drums";
-    Musician.playInstrument = function(){
-        return "play on " + this.instrument;
-    }
+        var will = Object.create(Musician);
 
-    var will = Object.create(Musician);
+        //המשתנים שהוספנו לאובייקט פרוטו שאותו אנחנו יורשים
+        //יכולים להתברר כחסרי משמעות! אם הם משתנים שכל מקרה פרטי שיורש אותם
+        // ישנה את התוכן שלהם אזי לא הרווחנו בכך כלום
+        //הרבה יותר נכון במקרה כזה לשים באובייקט הפרוטו רק פונקציות או משתנים כלליים
 
-    //המשתנים שהוספנו לאובייקט פרוטו שאותו אנחנו יורשים
-    //יכולים להתברר כחסרי משמעות! אם הם משתנים שכל מקרה פרטי שיורש אותם
-    // ישנה את התוכן שלהם אזי לא הרווחנו בכך כלום
-    //הרבה יותר נכון במקרה כזה לשים באובייקט הפרוטו רק פונקציות או משתנים כלליים
+        console.log('classical prtotypal - the right way');
 
-    console.log( 'classical prtotypal - the right way');
+
+        var HumanR = {
+
+            getFullName: function () {
+                return this.firstName + " " + this.familyName;
+            },
+            printFullName: function () {
+                console.log(this.getFullName());
+            }
+        }
+
+        //inherits Human into prototype
+        var MusicianR = Object.create(Human);
+
+        MusicianR.playInstrument = function () {
+            return "play on " + this.instrument;
+        }
+
+        var will = Object.create(MusicianR, {
+            name: {
+                value: 'will'
+            },
+            instrument: {
+                value: 'drums'
+            },
+            height: {
+                value: 170
+            },
+            weight: {
+                value: 80
+            },
+            firstName: {
+                value: 'ran'
+            },
+            familyName: {
+                value: 'maccabi'
+            }
+
+        });
+        will.playInstrument();
+        will.printFullName();
+    </script>
+    <script>
+        //classical inherits with create method on the prototype that return himself!
+        //this very common pattern for constructor+prototype 
+
+
+        var Vehicle = {
+
+            getPrice: function () {
+                    console.log("the price is:" + this.price);
+                }
+
+                ,
+            getCrice: function () {
+                    console.log("the color is:" + this.color);
+                }
+
+                ,
+            create: function (valuesOBJ) {
+
+                var instance = Object.create(this);//here we take Vehicle props
+                var arr = Object.keys(valuesOBJ);
+                console.log('keys in valuesOBJ:');
+                console.log(arr);
+                arr.forEach(function (keyName) {
+                    instance[keyName] = valuesOBJ[keyName];
+                    console.log("key is " + keyName + ' value is ' + valuesOBJ[keyName]);
+                })
+                return instance;
+            }
+        }
+
+        var car = Vehicle.create({
+            color: 'red',
+            price: "200k",
+            sunroof: true,
+            type: "seat"
+        });
+        car.getPrice();
+    </script>
+
+    <script>
+        //another somple way to solve this pattern is to use sub class pattern!!
+        //yes it exist is JAVASCRIPT!
+        //this solution was taked from MDN documention on Object.create()
+
+        // Shape - superclass
+        function Shape() {
+            this.x = 0;
+            this.y = 0;
+        }
+
+        // superclass method
+        Shape.prototype.move = function (x, y) {
+            this.x += x;
+            this.y += y;
+            console.info('Shape moved.');
+        };
+
+        // Rectangle - subclass
+        function Rectangle() {
+            Shape.call(this); // call super constructor.
+            this.alsoHere=function(){console.log('i am here');}
+        }
+
+        // subclass extends superclass
+        Rectangle.prototype = Object.create(Shape.prototype);
+
+        //we also need to change the constructor 
+        //why it important ? ic case we so clone
+        //read more about it
+        //https://dmitripavlutin.com/understanding-constructor-property/
+
+        Rectangle.prototype.constructor = Rectangle;
+
+        var rect = new Rectangle();
+        console.log(rect);
+    </script>
 
     
-    var HumanR = {
-      
-        getFullName:function(){
-            return this.firstName +" " + this.familyName;
-        }
-        ,printFullName:function(){
-            console.log(this.getFullName());
-        }
-    }
-
-    //inherits Human into prototype
-    var MusicianR = Object.create(Human);
-  
-    MusicianR.playInstrument = function(){
-        return "play on " + this.instrument;
-    }
-
-    var will = Object.create(MusicianR ,{
-        name:{value:'will'}
-        ,instrument:{value:'drums'}
-        ,height:{value:170}
-        ,weight:{value:80}
-        ,firstName:{value:'ran'}
-        ,familyName:{value:'maccabi'}
-
-    });
-   will.playInstrument();
-   will.printFullName();
-
-   //classical inherits with create method on the prototype that return himself!
-   //this very common pattern for constructor+prototype 
-
-
-   var Vehicle = {
-
-       getPrice:function(){
-           console.log ("the price is:" +this.price);
-       }
-
-       , getCrice:function(){
-           console.log ("the color is:" +this.color);
-       }
-
-       ,create:function(valuesOBJ){
-
-           var instance = Object.create(this);
-           var arr = Object.keys(valuesOBJ);
-           console.log ('keys in valuesOBJ:');
-           console.log(arr);
-           arr.forEach(function(keyName){
-               instance[keyName] = valuesOBJ[keyName];
-               console.log ("key is " + keyName + ' value is ' +  valuesOBJ[keyName]);
-           })
-           return instance;
-       }
-   }
-
-   var car = Vehicle.create({color:'red',price:"200k", sunroof:true,type:"seat"});
-    car.getPrice();
-    </script>
 </body>
+
 </html>
