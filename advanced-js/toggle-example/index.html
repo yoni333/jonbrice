@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+
+    <style>
+       
+    </style>
+</head>
+
+<body>
+
+    <ul>
+        <li class="open-div" data-view="1">a</li>
+        <li class="open-div" data-view="2">b</li>
+        <li class="open-div" data-view="3">c</li>
+        <li class="open-div" data-view="4">d</li>
+    </ul>
+
+    <div class="view2" id="view1">aa</div>
+    <div class="view2" id="view2">bb</div>
+    <div class="view2" id="view3">cc</div>
+    <div class="view2" id="view4">dd</div>
+
+
+    <script>
+
+
+        var toggleLib = {
+
+            className: null,
+
+            init: function (className) {
+
+                this.className = className;
+                this.getViewsArr();
+                this.hideAll()
+                this.createEvents()
+
+            },
+
+            viewsArr: [],
+
+            getViewsArr: function () {
+
+                var me = this;
+                var arr = $('.' + this.className).each(function (index, elm) {
+
+
+                    console.log($(this).attr('id'));
+                    me.viewsArr.push($(this).attr('id'))
+                })
+
+            },
+
+
+            createEvents: function () {
+
+                var me = this;
+                $('.open-div').click(function () {
+                    me.hideAll();
+                    console.log($(this).data('view'));
+                    var divID = $(this).data('view') - 1;
+                    $('#' + me.viewsArr[divID]).css('display', 'block');
+
+                })
+
+
+            },
+
+
+            hideAll: function () {
+
+                $('.' + this.className).hide();
+
+
+            }
+
+        };
+
+        toggleLib.init('view2');
+
+
+
+    </script>
+
+</body>
+
+</html>
