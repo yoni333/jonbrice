@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jquery.js"></script>
+    <style>
+        .line{
+
+            background-color: rgb(247, 247, 129);
+            border-bottom-color: rgb(93, 93, 240);
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <textarea name="text1" id="text1" cols="50" rows="10"></textarea>
+    <button id="btn-convert">convert</button>
+    <div id="result"></div>
+    <script>
+        $(document).ready(function () {
+
+
+
+
+            cnv.init();
+            $('#btn-convert').click(function (e) {
+
+                console.log('btn click');
+
+
+                cnv.getText();
+            });
+
+
+        })
+
+        var cnv = {
+            textElm: null,
+            resultElm: null,
+            init: function () {
+                this.textElm = $('#text1');
+                this.textElm.val('function(){ if(){aa function(){ad}aaif(){ccc}bbbb}}');
+                this.resultElm = $('#result');
+            },
+
+
+
+            getText: function () {
+                var text = this.textElm.val();
+                console.log(text);
+                this.createView(text);
+            },
+            spaces:function(num){
+
+                return spaces;
+            }
+
+            ,createView: function (text) {
+
+                var str = text;
+                var newStr = '<ul>';
+                var s = 0;
+                var sameRow =1
+                var sameRowEnd =1
+                var stSpace= "&nbsp;";
+                var last = 0 ;
+                var open = 0;
+                var close = 0;
+                for (var i = 0; i < str.length; i++) {
+                    console.log(newStr );
+                    switch (str.charAt(i)) {
+
+                        case '{':
+                        console.log('start ' +s + " i " +i + " open " +open );
+                       //     console.log(str.substring(s, i+sameRow));
+                       last =s ;
+                            newStr = newStr +'<li class="line">'+i+ stSpace.repeat(s+2) + str.substring(s, i+sameRow) + '</li>';
+                            s = i+sameRow;
+                            open++;
+                            break;
+
+                        case '}':
+                      
+                        console.log('end '  +s + " " +i + " open " +open + " char:" + str.charAt(i));
+                        console.log(str.substring(s, i));
+                        if (s !== i){ //for case of }}
+                            newStr =  newStr +'<li class="line">'+i+ stSpace.repeat(s+2)  + str.substring(s, i) + '</li>'; //get string till }
+                        }
+                            open--;
+                            newStr =  newStr +'<li class="line">'+i + stSpace.repeat(last) + str.substring(i, i+1) + '</li>'; //new line for }
+                            s = i+1;
+                            break;
+                    }
+
+
+                }
+                newStr+='</ul>';
+                this.printHtml(newStr);
+
+            },
+
+            printHtml: function (htmlString) {
+
+                $('#result').append('<p>' + htmlString + '</p>');
+
+            }
+
+
+
+
+
+
+        };
+    </script>
+
+</body>
+
+</html>
