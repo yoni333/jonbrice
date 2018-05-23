@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>flex & flexbox</title>
+    <style>
+        .simple-block {
+            display: block;
+        }
+
+        .simple-inline div,
+        .simple-inline p {
+            display: inline;
+        }
+
+        .inline-block div,
+        .inline-block p {
+            display: inline-block;
+        }
+
+        .flex-wrap {
+            display: flex;
+
+            flex-wrap: wrap;
+
+        }
+
+        .flex-wrap-column {
+            display: flex;
+
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+
+
+
+        .flex-no-wrap {
+            display: flex;
+
+            flex-wrap: nowrap;
+
+
+        }
+
+        .flex-no-wrap p.overflow-wrap-break-word {
+            overflow-wrap: break-word;
+        }
+
+        .no-wrap-flex-direction-column {
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            font-size: 20px;
+
+        }
+
+        .sub-example p,
+        .sub-example div {
+            font-size: 20px;
+            margin: 10px;
+
+        }
+
+        .flex-row-reverse {
+            display: flex;
+            flex-direction: row-reverse;
+            flex-wrap: wrap;
+        }
+
+        .flex-column-reverse {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .flex-justify-center {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .flex-justify-start {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+
+        .flex-justify-space {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .flex-divder {
+
+            display: flex;
+            flex-wrap: wrap;
+
+        }
+
+        .flex-divder .side {
+            flex: 1;
+            font-size:30px;
+        }
+
+          .flex-divder .main {
+            flex:2;
+            font-size:30px;
+        }
+
+        section div {
+            border: 3px orange solid;
+            font-size: 100px;
+            margin: 20px;
+            padding: 20px;
+            min-width: 200px;
+
+        }
+
+        section p {
+            border: 3px orange solid;
+            font-size: 100px;
+            margin: 20px;
+            padding: 20px;
+            min-width: 200px;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="view-display-block-inline">
+        <section class="simple-block">
+            <p> display: block; </p>
+            <p> without flex box </p>
+
+
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+        </section>
+        <hr>
+        <section class="simple-inline">
+            <p> display: inline; </p>
+            <p> without flex box </p>
+            <p> when we use inline we dont have top & bottom margin </p>
+            <p> when we use inline the browser will not cut a word in the middle </p>
+
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+        </section>
+
+        <hr>
+        <section class="inline-block">
+            <p> display: inline-block; </p>
+            <p> without flex box </p>
+
+
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+        </section>
+    </div>
+    <hr>
+
+
+    <div id="view-flex-wrap">
+        <section class="flex-wrap">
+            <p> display: flex; </p>
+            <p> flex-wrap: wrap; </p>
+
+            <p> flex is a property we give to the container of the items </p>
+            <div class="">1</div>
+            <div class="">2</div>
+            <div class="">3</div>
+            <div class="">4</div>
+            <div class="">5</div>
+            <div class="">6</div>
+            <div class="">7</div>
+            <div class="">8</div>
+            <div class="">9</div>
+        </section>
+
+        <hr>
+        <section class="flex-row-reverse">
+            <p> display: flex; </p>
+
+            <p>flex-direction:row-reverse</p>
+
+            <div class="">1</div>
+            <div class="">2</div>
+            <div class="">3</div>
+            <div class="">4</div>
+            <div class="">5</div>
+            <div class="">6</div>
+            <div class="">7</div>
+            <div class="">8</div>
+            <div class="">9</div>
+        </section>
+
+        <hr>
+        <section class="flex-wrap-column">
+            <p> display: flex; </p>
+            <p> flex-wrap: wrap; </p>
+            <p> flex-direction:column; </p>
+            <div class="">1</div>
+            <div class="">2</div>
+            <div class="">3</div>
+            <div class="">4</div>
+            <div class="">5</div>
+            <div class="">6</div>
+            <div class="">7</div>
+            <div class="">8</div>
+            <div class="">9</div>
+        </section>
+        <hr>
+        <section class="flex-column-reverse sub-example ">
+            <p> display: flex; </p>
+
+            <p>flex-direction:column-reverse</p>
+
+            <div class="">1</div>
+            <div class="">2</div>
+            <div class="">3</div>
+            <div class="">4</div>
+            <div class="">5</div>
+            <div class="">6</div>
+            <div class="">7</div>
+            <div class="">8</div>
+            <div class="">9</div>
+        </section>
+    </div>
+    <hr>
+
+    <div id="view-flex-nowrap">
+        <section class="flex-no-wrap">
+            <p> display: flex; </p>
+            <p> flex-wrap: nowrap; </p>
+            <p> all item get same width and for more words the column will be longer</p>
+            <p class="overflow-wrap-break-word"> if we want to avoide text overflow use: overflow-wrap: break-word;</p>
+
+            <div class="">1</div>
+            <div class="">2</div>
+            <div class="">3</div>
+            <div class="">4</div>
+            <div class="">5</div>
+            <div class="">6</div>
+            <div class="">7</div>
+            <div class="">8</div>
+            <div class="">9</div>
+        </section>
+
+
+
+
+
+
+        <hr>
+        <section class="no-wrap-flex-direction-column sub-example ">
+            <p> display: flex; </p>
+            <p>flex-wrap:nowrap </p>
+            <p>flex-direction:column</p>
+
+            <div class="">1</div>
+            <div class="">2</div>
+            <div class="">3</div>
+            <div class="">4</div>
+            <div class="">5</div>
+            <div class="">6</div>
+            <div class="">7</div>
+            <div class="">8</div>
+            <div class="">9</div>
+        </section>
+
+    </div>
+
+    <hr>
+
+    <div id="view-flex-wrap-justify">
+        <section class="flex-justify-center sub-example ">
+            <p> display: flex; </p>
+            <p> flex-wrap: wrap; </p>
+            <p>justify-content: center;</p>
+
+            <div class="">1</div>
+            <div class="">2</div>
+            <div class="">3</div>
+            <div class="">4</div>
+            <div class="">5</div>
+            <div class="">6</div>
+            <div class="">7</div>
+            <div class="">8</div>
+            <div class="">9</div>
+
+
+        </section>
+
+        <hr>
+        <section class="flex-justify-start sub-example ">
+            <p> display: flex; </p>
+            <p> flex-wrap: wrap; </p>
+            <p>justify-content: flex-start;</p>
+
+            <div class="">1</div>
+            <div class="">2</div>
+            <div class="">3</div>
+            <div class="">4</div>
+            <div class="">5</div>
+            <div class="">6</div>
+            <div class="">7</div>
+            <div class="">8</div>
+            <div class="">9</div>
+
+
+        </section>
+
+
+        <hr>
+        <section class="flex-justify-space sub-example ">
+            <p> display: flex; </p>
+            <p> flex-wrap: wrap; </p>
+            <p> justify-content: space-around;</p>
+
+            <div class="">1</div>
+            <div class="">2</div>
+            <div class="">3</div>
+            <div class="">4</div>
+            <div class="">5</div>
+            <div class="">6</div>
+            <div class="">7</div>
+            <div class="">8</div>
+            <div class="">9</div>
+
+        </section>
+
+    </div>
+    <hr>
+
+    <div id="view-flex-wrap-flex-divider">
+
+
+        <section class="flex-divder">
+
+            <div class="side">
+                <p> display: flex; </p>
+                <p> flex-wrap: wrap; </p>
+                <p>sidebar flex:1;</p>
+                <p>main view flex:2;</p>
+            </div>
+            <div class="main">
+                <div class="">1</div>
+                <div class="">2</div>
+                <div class="">3</div>
+                <div class="">4</div>
+                <div class="">5</div>
+                <div class="">6</div>
+                <div class="">7</div>
+                <div class="">8</div>
+                <div class="">9</div>
+            </div>
+
+        </section>
+
+        <hr>
+    </div>
+
+    <hr>
+
+
+</body>
+
+</html>
