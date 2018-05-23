@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css grid</title>
+    <style>
+        header {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 80px;
+        }
+
+        h3 {
+            font-size: 60px;
+        }
+
+        div {
+            font-size: 30px;
+        }
+        
+        .info{
+            text-align: center;
+        }
+        .wrapper {
+            display: grid;
+            grid-template-columns: 30% 70%;
+        }
+
+        .border div {
+            color: orange;
+            border: 2px blueviolet dotted;
+
+        }
+
+        .wrapper3040 {
+            display: grid;
+            grid-template-columns: 30% 40%;
+        }
+
+        .wrapper304030 {
+            display: grid;
+            grid-template-columns: 30% 40% 30%;
+        }
+
+        .gap {
+            grid-column-gap: 10px;
+            grid-row-gap: 10px;
+           
+        }
+
+       
+    </style>
+</head>
+
+<body>
+    <header>
+
+        <h1>css grid </h1>
+        <div>ccs grid is 2 dimension , flex box is 1 dimension</div>
+
+    </header>
+
+    <br>
+    <div class="info">
+
+            <h3> grid-template-columns: 30% 70%;</h3>
+            <div> grid-column-gap: 10px;</div>
+            <div> grid-row-gap: 10px; </div>
+            <div> or use grid-gap: 10px; for equal gap</div>
+
+    </div>
+  <section class="mainwrapper">
+    <div class="wrapper gap border oddback">
+
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, provident?
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, provident?
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, provident?
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, provident?
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="wrapper3040 gap border oddback">
+
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, provident?
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, provident?
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, provident?
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, provident?
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="wrapper304030 gap border oddback">
+
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, provident?
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, provident?
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, provident?
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, provident?
+        </div>
+
+    </div>
+
+    </section>
+
+</body>
+
+</html>
