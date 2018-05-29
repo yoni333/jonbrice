@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    
+            .main , buttons-container{
+
+
+                    background: #eeea;
+                    padding: 1%;
+                    
+
+
+            }
+
+            .main>div , .buttons-container>div{
+                border:2px burlywood solid;
+                font-size:40px;
+                display: inline-block;
+                width:30%;
+                text-align: center;
+            }
+
+            .buttons-container>div:hover {
+
+                background: purple;
+            }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="main">
+        <div id="d1">1</div>
+        <div id="d2">2</div>
+        <div id="d3">3</div>
+    </div>
+
+    <div class="buttons-container">
+            <div id="btn1">change </div>
+            <div id="btn2">change </div>
+            <div id="btn3">change</div>
+        </div>
+
+    <script>
+    
+    window.onload=function(){
+        console.log( 'window load event written before DOMContentLoaded - but fired only after it - bacause it waits to all sources to be loaded');
+    }
+
+
+    //with addEventListner we can add multiple function to the same event
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log('DOMContentLoaded event !!');
+    });
+
+     document.addEventListener("DOMContentLoaded", function() {
+        console.log('DOMContentLoaded event number 2 overload !!');
+    });
+
+    document.getElementById('btn1').addEventListener('click',function(){
+        console.log('btn1 was clicked');
+        document.getElementById('d1').innerText= "i was clicked";
+    })
+
+      document.getElementById('btn2').addEventListener('click',function(){
+        console.log(this + 'was clicked');
+        console.log(this.id);
+        document.getElementById('d2').style.background= "red";
+
+    })
+
+  
+    </script>
+</body>
+</html>
