@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+        }
+
+        .views {
+            flex: 4;
+            border: 2px brown solid;
+            padding: 10px;
+        }
+
+        .views .view {
+
+            border: 2px brown solid;
+            font-size: 60px;
+
+        }
+
+        .sidebar {
+            flex: 1;
+            border: 1px orangered solid;
+            padding: 10px;
+        }
+
+        .sidebar .link {
+
+            font-size: 30px;
+            text-align: center;
+            margin-top: 10px;
+            border: 1px orangered solid;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="views" id="viewsID">
+
+        </div>
+
+        <div class="sidebar" id="sidebarID">
+
+        </div>
+    </div>
+
+    <script>
+        toggle = {
+
+            sidebar: null,
+            buttons: null,
+            viewsContainer: null,
+            views: null,
+
+            createSidebar: function (params) {
+                for (x = 0; x < params.linkArr.length; x++) {
+
+                    newElm = document.createElement('div');
+                    newElm.innerText = x + 1;
+                    newElm.classList = "link";
+                    this.sidebar.appendChild(newElm);
+                }
+            },
+
+            createViews: function (params) {
+                for (x = 0; x < params.viewsArr.length; x++) {
+
+                    newElm = document.createElement('div');
+                    newElm.innerText = params.viewsArr[x ];
+                    newElm.classList = "view";
+                    this.viewsContainer.appendChild(newElm);
+                }
+            },
+
+            hideAllViews: function () {
+                this.views = this.viewsContainer.getElementsByClassName('view');
+                for (x = 0; x < this.views.length; x++) {
+                    this.views[x].style.display = "none";
+                }
+            },
+            addEvents: function () {
+                this.buttons = this.sidebar.getElementsByClassName('link');
+                for (x = 0; x < this.buttons.length; x++) {
+                        that = this;
+                        this.buttons[x].setAttribute("view",x)
+                        this.buttons[x].onclick=function(e){
+                            viewNumner = this.getAttribute('view');
+                            console.log(this);
+                            that.hideAllViews();
+                            that.views[viewNumner].style.display="block";
+                        }
+
+                        
+                }
+
+            },
+            init: function (params) {
+
+                this.sidebar = document.getElementById(params.sidebarID);
+                this.viewsContainer = document.getElementById(params.viewsID);
+
+                this.createSidebar(params);
+                this.createViews(params);
+
+                this.hideAllViews(params);
+                this.addEvents();
+
+
+            }
+
+        }
+        linkArr = [1, 2, 3, 4, 5, 6];
+        viewsArr = ["one", "two", "three", "four", "five", "six"]
+        toggle.init({
+            sidebarID: 'sidebarID',
+            viewsID: 'viewsID',
+            linkArr: linkArr,
+            viewsArr: viewsArr
+        })
+    </script>
+</body>
+
+</html>
