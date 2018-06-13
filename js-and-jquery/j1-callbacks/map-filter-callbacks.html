@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .view {
+        
+    }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="view">
+
+    </div>
+
+    <div class="button">click</div>
+
+    <script>
+
+        arr = [1, 2, 3, 4, 5, 6];
+        function doubleArr(param1 , index, allArr) {
+            console.log(index )
+            console.log(allArr )
+            return param1 * 2;
+        }
+
+        function tripleArr(param1) {
+
+            return param1 * 3;
+        }
+
+        function addOne(param1) {
+
+            return param1 +1;
+        }
+        
+       
+
+        function map(arr, cb ) {
+            result = [];
+           
+            for (var i = 0; i < arr.length; i++) {
+
+                result[i] = cb(arr[i] , i ,arr);
+
+            }
+
+            return result;
+        }
+
+        function bigThen3(param){
+            if (param > 3 ) {  return param; }
+           
+        }
+
+        function filter(arr,cb){
+
+            result = [];
+           counter =0 ;
+           for (var i = 0; i < arr.length; i++) {
+               var tmp =   cb(arr[i]);
+               if ( tmp!== undefined )  {
+               result[counter] = tmp ;
+                counter++;
+               }
+           }
+
+           return result;
+
+
+
+        }
+        
+      //  arr = map(arr, doubleArr);
+        console.log(map(arr, doubleArr));
+        console.log(map(arr, tripleArr));
+        console.log(map(arr, addOne));
+        console.log(map(arr, function(param1){
+            return param1 -1;
+        }));
+     ///arr2[0].private
+        arr2 = [
+            {private:"yoni" , family:"yehezkel" },
+            {private:"ran" , family:"yahav" },
+            {private:"haim" , family:"moshe" },
+            {private:"avi" , family:"doytch" }
+            
+            ]    ;
+           
+         arr3= arr2.map( function(obj , index , arr){
+                console.log("index=" +index)
+              return obj.private + " " +obj.family
+
+          })
+          console.log ('*********************')
+      console.log ( filter (arr,bigThen3) )
+    
+      arr3= arr2.filter(function(obj){
+
+                if (obj.family.length >5  ){
+                    return obj;
+                }
+
+
+          })
+
+          console.log(arr3);
+
+    </script>
+
+</body>
+
+</html>
