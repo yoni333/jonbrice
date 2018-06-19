@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .obj {
+            font-size: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+
+        var utils = {
+
+            addElm: function (params) {
+
+                var elm = document.createElement(params.type);
+                elm.innerText = params.text;
+                elm.className = params.class;
+                document.body.appendChild(elm);
+
+            },
+        }
+
+        xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    //var obj = 
+                    var obj = JSON.parse(xhr.response);
+                    console.log(xhr);
+                    console.log(obj);
+                    console.log(obj.contents.quotes[0].quote);
+                //    console.log("Received:" + xhr.responseText)
+                    utils.addElm({
+                        type: 'div',
+                        class: 'obj'
+                        , text: obj.contents.quotes[0].quote
+                    })
+                    utils.addElm({
+                        type: 'div',
+                        class: 'obj'
+                        , text: obj.contents.quotes[0].author
+                    })
+                    utils.addElm({
+                        type: 'div',
+                        class: 'obj'
+                        , text: obj.contents.quotes[0].title
+                    })
+                } else
+                    console.log("Error code " + xhr.status);
+            }
+        };
+
+        var url = "http://quotes.rest/qod.json?category=inspire";
+        xhr.open("GET", url, true);
+        xhr.send(null);
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+
+
+
+
+        function makeAjax(url, fn, fn2, key) {
+
+            var xhr = new XMLHttpRequest();
+            //  console.log(xhr);
+            var url = url;
+
+            xhr.onreadystatechange = function () {
+
+                if (this.readyState == 4) {
+
+                    if (this.status == 200) {
+
+                        fn(xhr, fn2);
+
+                    } else {
+                        console.log("error");
+                    }
+
+                }
+
+            }
+            xhr.open("GET", url, true); //GET POST
+            xhr.send();
+
+        } //end makeAjax
+
+        var dogsList = null;
+        function showAllDogs(xhr, fn2) {
+
+
+            var obj = xhr.response;
+            obj = JSON.parse(obj);
+            dogsList = obj;
+            //console.log ( JSON.stringify(obj))
+            for (key in obj.message) {
+
+                var elm = document.createElement('div')
+                elm.innerText = key + " " + obj.message[key];
+                document.body.appendChild(elm)
+            }
+
+            if (typeof fn2 === "function") {
+                fn2(xhr);
+            } else {
+                console.log('****  you didnt pass function as argument for callback');
+            }
+            console.log(obj);
+        }
+
+        function addImage(xhr) {
+
+            obj = JSON.parse(xhr.response);
+            imageUrl = obj.message
+
+
+            console.log(imageUrl)
+            var elm = document.createElement('img')
+            elm.src = imageUrl;
+            document.body.appendChild(elm)
+
+
+        }
+
+        //   makeAjax("https://dog.ceo/api/breeds/image/random", addImage)
+
+
+        makeAjax("https://dog.ceo/api/breeds/list/all", showAllDogs)
+
+        makeAjax("https://dog.ceo/api/breeds/list/all", showAllDogs, addAllpics)
+
+        function addAllpics() {
+
+            console.log('*****************************');
+
+            console.log(dogsList)
+            for (key in dogsList.message) {
+
+                var url = "https://dog.ceo/api/breed/" + key + "/images"
+                makeAjax(url, function (xhr) {
+
+                    var obj = JSON.parse(xhr.response);
+                    // console.log (obj);
+                    var imageUrl = obj.message[0];
+                    console.log(imageUrl)
+                    var titleElm = document.createElement('div')
+                    var title = imageUrl.split("/");
+                    console.log(title[4]);
+                    titleElm.innerText = title[4]
+                    document.body.appendChild(titleElm)
+                    var elm = document.createElement('img')
+                    elm.src = imageUrl;
+                    document.body.appendChild(elm)
+
+                })
+
+            }
+
+
+        }
+
+
+        // for ( key in dogsList ){
+
+        //    var url = "https://dog.ceo/api/breed/"+key +"/images" 
+        //    makeAjax(url  , function(xhr){      } )
+
+        // }
+
+            // make it twice 
+            //1 with false for asynchron
+            //2 withh callback inside callback
+    </script>
+</body>
+
+</html>
