@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .text {
+            font-size: 40px;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+        <div class="text" >הפונקציות והמשתנים שבו הם אוטומטית מסוג - פרטי - אלא אם כן נבחר לחשוף אותם</div>
+        <div class="text" >החשיפה לשאר הקוד נעשית באמצעות המילה השמורה</div>
+        <div class="text" ><span style="color: #ff0000;">export</span></div>
+        <div class="text" >הערה -&nbsp; &nbsp;על מנת להשתמש במודולים נצטרך להגיש אותם משרת מקומי או משרת על גבי המרשתת</div>
+        <div class="text" >כיוון שהדפדפנים חוסמים אותם מסיבות של אבטחה כאשר אנחנו נמצאים במערכת הקבצים שלנו</div>
+        <div class="text" >&nbsp;</div>
+        <div class="text" >הקריאה למודול נעשית באמצעות המילה השמורה</div>
+        <div class="text" ><span style="color: #ff0000;">import</span></div>
+        <div class="text" >כמו כן בכל סקריפט שקורא למודולים ועושה בהם שימוש&nbsp; על ידי המילה השמורה <br /><span style="color: #ff0000;">import</span><br />יש להשתמש בתוספת לתגית בסקריפט - התוספט היא&nbsp;</div>
+        <div class="text" ><span style="color: #ff0000;">&lt;script type="module"&gt;&lt;/script&gt;</span></div>
+        <div class="text" ><span >שימו לב התוספת הזאת היא לא על הקובץ שמחזיק את המודול אלא&nbsp; היא עבור הקובץ או הסקריפט </span></div>
+        <div class="text" ><span >שמשתמש בו</span></div>
+        <div class="text" >&nbsp;</div>
+        <div class="text" ><span >שוני בין מודולים ל קבצי ג'אווהסקריפט רגילים</span></div>
+        <div class="text" ><span >א -הם מיישמים באופן אוטומטי את סטריקט מוד</span></div>
+        <div class="text" ><span >ב- משתנים ופונקציות שמוכרזים בהם הם לא גלובליים ולא מוכרים באובייקט ווינדוו</span></div>
+        <div class="text" ><span >ג- כאשר קוראים למודול&nbsp; חייבים להוסיף את ההקדמה </span></div>
+        <div class="text" ><span style="color: #ff0000;">./</span></div>
+        <div class="text" ><span style="color: #ff0000;">/</span></div>
+        <div class="text" ><span style="color: #ff0000;">http://</span></div>
+        <div class="text" ><span >ד- מודולים נטענים בצורה מקבילית ! המפרש של הדף לא מחכה שהם יטענו על מנת להמשיך בפירוש הקוד! להבדיל מסקריפט רגיל שכן עוצר את המפרש מלהתקדם עד לסיומו<br />כך שאם משתמשים במודולים צריך להשתמש באיוונט שימתין לטעינה שלהם</span></div>
+        <div class="text" ><span >ה- עד 100 מודולוים ובעומק קטן מחמש אין צורך להשתמש בתוכניות באנדל כגון וובפאק</span></div>
+        <div class="text" >&nbsp;</div>
+        <div class="text" ><span >&nbsp;:לקריאה נוספת</span></div>
+        <div class="text" >&nbsp;</div>
+        <div class="text" ><a href="https://developers.google.com/web/fundamentals/primers/modules"><span >https://developers.google.com/web/fundamentals/primers/modules</span></a></div>
+        <div class="text" >&nbsp;</div>
+
+    <script type="module">
+        import {
+            square,
+            diag
+        } from './math.js';
+
+        window.addDiv = function (text){
+
+             var m = document.createElement('div');
+               m.innerText = text;
+               m.classList.add('text')
+              document.body.appendChild(m);
+
+        }
+       
+        addDiv('from script : ' + square(11));
+        addDiv('from script : ' + diag(4, 3));
+
+        console.log(square(11)); // 121
+        console.log(diag(4, 3)); // 5
+    </script>
+
+    <script  src="./main.js"></script>
+    <script  type="module" src="./main.js"></script>
+</body>
+
+</html>
