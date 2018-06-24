@@ -6,13 +6,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        .text{
+            text-align: right;
+        }
+        .container {
+            font-size: 50px;
+        }
+    </style>
 </head>
 
 <body>
 
+    <!-- #######  YAY, I AM THE SOURCE EDITOR! #########-->
+<p class="text">from MDN&nbsp;</p>
+<p class="text">"An&nbsp;<strong>arrow function expression</strong>&nbsp;has a shorter syntax than a&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function">function expression</a>&nbsp;and does not have its own&nbsp;<code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">this</a></code>,&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments">arguments</a>,&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super">super</a>, or&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new.target">new.target</a>. These function expressions are best suited for non-method functions, and they cannot be used as constructors."&nbsp;</p>
+<p class="text"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions</a></p>
+<p class="text">&nbsp;::תחביר בסיסי&nbsp;</p>
+<pre class="syntaxbox">(param1, param2, &hellip;, paramN) =&gt; { statements } 
+</pre>
+<div class="text">
+<div><code>var arw = (x)=&gt;{ var sqr = x*x; console.log(sqr)}</code></div>
+<div><code>arw(20);</code></div>
+</div>
+<p class="text">בגלל שאחד התפקידים שמייעדים&nbsp; לפונקציות חץ הוא קיצור בכתיבת קוד - יש כמה צורות מקוצרות של פונקציות חץ שצריך להכיר</p>
+<p class="text">א- כאשר יש רק פרמטר אחד שמועבר לפונקציה אין צורך בסוגריים עגולים שיקיפו את אזור הפרמטרים</p>
+<div>
+<div class="text"><code>//basic</code></div>
+<div class="text"><code>vararw = (x)=&gt;{ varsqr = x*x; console.log("basix",sqr)}</code></div>
+<div class="text"><code>arw(20);</code></div>
+<div class="text"><code>//no Parentheses</code></div>
+<div class="text"><code>vararw = x=&gt;{ varsqr = x*x; console.log("no Parentheses " , sqr)}</code></div>
+<div class="text"><code>arw(20);</code></div>
+<div class="text">&nbsp;</div>
+<div class="text">ב- כאשר התוכן של הפונקציה הוא ביטוי ולא סדרת פקודות אין צורך בסוגריים מסולסלים שיעטפו את איזור הפונקציה</div>
+<div class="text">&nbsp;</div>
+<div>
+<div class="text"><code>//no cruly brackets</code></div>
+<div class="text"><code>arw = x=&gt;console.log("no cruly brackets " , x*x) ;</code></div>
+<div class="text"><code>arw(20);</code></div>
+<div>
+<div class="text"><code>//no cruly brackets</code></div>
+<div class="text"><code>arw = x=&gt;x*x ;</code></div>
+<div class="text"><code>arw(20);</code></div>
+<div class="text"><code></code></div>
+<div class="text">ג- אם רוצים להחזיר אובייקט ולא ביטוי ולהנות מהיתרון&nbsp; של ביטול הצורך במילה השמורה&nbsp;</div>
+<div class="text">return</div>
+<div class="text">אז צריך להוסיף סוגריים עגולות שיעטפו את הסוגריים המסולסלות</div>
+<div class="text">&nbsp;</div>
+<div>
+<div class="text">vararwAdvanced = ()=&gt;({name:"yoni"})</div>
+<div class="text">console.log (arwAdvanced);</div>
+<div class="text">&nbsp;</div>
+<div class="text">&nbsp;של פונקציית חץ&nbsp; THIS הבנת&nbsp;</div>
+<div class="text">&nbsp;</div>
+<div class="text">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+    <div class="container">
+        <div class="answer">
+
+        </div>
+        <div class="btn">
+
+            <button id="btn-1">regular function</button>
+            <button id="btn-2"> arrow function</button>
+            <button id="btn-3"> arrow function inside function eventlistner</button>
+            <button id="btn-4"> arrow function inside function inside object</button>
+            <button id="btn-5"> arrow function inside function inside object</button>
+        </div>
+
+
+    </div>
+
     <script>
         //from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
-        
+        //from http://exploringjs.com/es6/ch_arrow-functions.html#sec_overview-arrow-functions
+        //arrow function have auto return when the function is just expression
         var materials = [
             'Hydrogen',
             'Helium',
@@ -21,10 +93,98 @@
         ];
         var map1 = materials.map(material => material.length)
         console.log(map1);
-        var map2 = materials.map( function(material){ return material.length})
-        console.log( map2);
+        var map2 = materials.map(function (material) {
+            return material.length
+        })
+        console.log(map2);
+    </script>
+
+    <script>
+        //basic
+        var arw = (x) => {
+            var sqr = x * x;
+            console.log("basix", sqr)
+        }
+        arw(20);
+        //no Parentheses 
+        arw = x => {
+            var sqr = x * x;
+            console.log("no Parentheses ", sqr)
+        }
+        arw(20);
+        //if there is no parameter we must use parentheses
+        arw = () => {
+            var sqr = 10 * 10;
+            console.log("no parameter - must use  Parentheses ", sqr)
+        }
+        arw(20);
 
 
+        //no cruly brackets
+        arw = x => console.log("no cruly brackets ", x * x);
+        arw(20);
+        //no cruly brackets
+        arw = x => x * x;
+        console.log("no cruly brackets 2 ", arw(20));
+    </script>
+
+    <script>
+        //advanced arrow syntax
+        console.log(
+            "when we want to return object with the shortcut of auto return we need to add parentheses to the function arae"
+        );
+
+        var arwAdvanced = () => ({
+            name: "yoni"
+        })
+        console.log(arwAdvanced);
+        console.log(() => {
+            return {
+                name: "yoni"
+            }
+        });
+    </script>
+
+    <script>
+        //this of arrow function
+
+        var btn = document.getElementById('btn-1');
+
+        btn.onclick = function () {
+
+            console.log(this.id)
+
+        }
+
+        var btn = document.getElementById('btn-2');
+
+        btn.onclick = (e) => {
+            console.log(e.target.id);
+        }
+        //btn.onclick= ()=> { console.log(this.id);}   //this form not work
+        //because arrow function dont have this object
+        function handleClick(){
+            console.log('CLICK');
+        }
+        function tryArrowEvent() {
+
+            this.handleClick= function(){
+                console.log('CLICK inside tryArrowEvent');
+            }
+            var btn = document.getElementById('btn-3');
+
+            btn.onclick= () => {
+             
+                this.handleClick(); // lexical `this`
+            };
+        }
+
+        tryArrowEvent();
+
+
+        var obj={
+
+        }
     </script>
 
 </body>
