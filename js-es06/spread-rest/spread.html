@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    spread es06
+
+    <script>
+        function inspectArguments() {
+            var i = 0;
+            console.log(arguments);
+
+            for (; i < arguments.length; i++) {
+                console.log('arguments[' + i + '] -> ' + arguments[i]);
+            }
+        }
+
+        var letters = ['a', 'b', 'c', 'd', 'e', 'f'];
+
+        inspectArguments(...letters);
+       
+        console.log('*********** inspectArguments 2 ********')
+
+        function inspectArguments2() {
+            var i = 0;
+
+            for (; i < arguments.length; i++) {
+                console.log('arguments[' + i + '] -> ' + arguments[i]);
+            }
+        }
+
+        var letters = ['a', 'b', 'c', 'd', 'e', 'f'];
+
+
+        inspectArguments2('x', 'y', ...letters);
+
+        console.log('*********** inspectArguments 3 ********')
+
+        function inspectArguments3() {
+            var i = 0;
+
+            for (; i < arguments.length; i++) {
+                console.log('arguments[' + i + '] -> ' + arguments[i]);
+            }
+        }
+
+        var letters = ['a', 'b', 'c', 'd', 'e', 'f'];
+        var days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+
+        inspectArguments3(...days, ...letters);
+
+        console.log('*********** inspectArguments 4 ********')
+
+
+        function inspectArguments4(x) {
+            var i = 0;
+            console.log(arguments);
+
+            for (; i < arguments.length; i++) {
+                console.log('arguments[' + i + '] -> ' + arguments[i]);
+            }
+        }
+
+        var letters = ['a', 'b', 'c', 'd', 'e', 'f'];
+
+        inspectArguments4(...letters, 3);
+        inspectArguments4(3, ...letters);
+    </script>
+</body>
+
+</html>

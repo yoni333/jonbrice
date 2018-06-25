@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    rest es06
+
+    <script>
+        function inspectArgs(...theArgs) {
+            theArgs.forEach((arg, index) => {
+                console.log('arg ' + index + ' -> ' + arg);
+            })
+        }
+
+        inspectArgs('a', 'b', 'c', 'd', 'e', 'f');
+
+
+        function inspectArgs2(x, ...theArgs) {
+            if (x) {
+                console.log('x -> ' + x);
+            }
+
+
+            theArgs.forEach((arg, index) => {
+                console.log('arg ' + index + ' -> ' + arg);
+            })
+        }
+
+        inspectArgs2('a', 'b', 'c', 'd', 'e', 'f');
+
+
+        function inspectArgs3(x, y, ...theArgs) {
+            if (x) {
+                console.log('x -> ' + x);
+            }
+
+
+            theArgs.forEach((arg, index) => {
+                console.log('arg ' + index + ' -> ' + arg);
+            })
+        }
+
+        inspectArgs3('a', 'b', 'c', 'd', 'e', 'f');
+    </script>
+
+</body>
+
+</html>
