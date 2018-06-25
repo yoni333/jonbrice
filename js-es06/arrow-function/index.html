@@ -18,53 +18,55 @@
 
 <body>
 
-    <!-- #######  YAY, I AM THE SOURCE EDITOR! #########-->
-<p class="text">from MDN&nbsp;</p>
-<p class="text">"An&nbsp;<strong>arrow function expression</strong>&nbsp;has a shorter syntax than a&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function">function expression</a>&nbsp;and does not have its own&nbsp;<code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">this</a></code>,&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments">arguments</a>,&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super">super</a>, or&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new.target">new.target</a>. These function expressions are best suited for non-method functions, and they cannot be used as constructors."&nbsp;</p>
-<p class="text"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions</a></p>
-<p class="text">&nbsp;::תחביר בסיסי&nbsp;</p>
-<pre class="syntaxbox">(param1, param2, &hellip;, paramN) =&gt; { statements } 
-</pre>
-<div class="text">
-<div><code>var arw = (x)=&gt;{ var sqr = x*x; console.log(sqr)}</code></div>
-<div><code>arw(20);</code></div>
-</div>
-<p class="text">בגלל שאחד התפקידים שמייעדים&nbsp; לפונקציות חץ הוא קיצור בכתיבת קוד - יש כמה צורות מקוצרות של פונקציות חץ שצריך להכיר</p>
-<p class="text">א- כאשר יש רק פרמטר אחד שמועבר לפונקציה אין צורך בסוגריים עגולים שיקיפו את אזור הפרמטרים</p>
-<div>
-<div class="text"><code>//basic</code></div>
-<div class="text"><code>vararw = (x)=&gt;{ varsqr = x*x; console.log("basix",sqr)}</code></div>
-<div class="text"><code>arw(20);</code></div>
-<div class="text"><code>//no Parentheses</code></div>
-<div class="text"><code>vararw = x=&gt;{ varsqr = x*x; console.log("no Parentheses " , sqr)}</code></div>
-<div class="text"><code>arw(20);</code></div>
-<div class="text">&nbsp;</div>
-<div class="text">ב- כאשר התוכן של הפונקציה הוא ביטוי ולא סדרת פקודות אין צורך בסוגריים מסולסלים שיעטפו את איזור הפונקציה</div>
-<div class="text">&nbsp;</div>
-<div>
-<div class="text"><code>//no cruly brackets</code></div>
-<div class="text"><code>arw = x=&gt;console.log("no cruly brackets " , x*x) ;</code></div>
-<div class="text"><code>arw(20);</code></div>
-<div>
-<div class="text"><code>//no cruly brackets</code></div>
-<div class="text"><code>arw = x=&gt;x*x ;</code></div>
-<div class="text"><code>arw(20);</code></div>
-<div class="text"><code></code></div>
-<div class="text">ג- אם רוצים להחזיר אובייקט ולא ביטוי ולהנות מהיתרון&nbsp; של ביטול הצורך במילה השמורה&nbsp;</div>
-<div class="text">return</div>
-<div class="text">אז צריך להוסיף סוגריים עגולות שיעטפו את הסוגריים המסולסלות</div>
-<div class="text">&nbsp;</div>
-<div>
-<div class="text">vararwAdvanced = ()=&gt;({name:"yoni"})</div>
-<div class="text">console.log (arwAdvanced);</div>
-<div class="text">&nbsp;</div>
-<div class="text">&nbsp;של פונקציית חץ&nbsp; THIS הבנת&nbsp;</div>
-<div class="text">&nbsp;</div>
-<div class="text">&nbsp;</div>
-</div>
-</div>
-</div>
-</div>
+  <div>
+      
+    <p class="text">from MDN&nbsp;</p>
+    <p class="text">"An&nbsp;<strong>arrow function expression</strong>&nbsp;has a shorter syntax than a&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function">function expression</a>&nbsp;and does not have its own&nbsp;<code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">this</a></code>,&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments">arguments</a>,&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super">super</a>, or&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new.target">new.target</a>. These function expressions are best suited for non-method functions, and they cannot be used as constructors."&nbsp;</p>
+    <p class="text"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions</a></p>
+    <p class="text">&nbsp;::תחביר בסיסי&nbsp;</p>
+    <pre class="syntaxbox">(param1, param2, &hellip;, paramN) =&gt; { statements } 
+    </pre>
+    <div class="text">
+    <div><code>var arw = (x)=&gt;{ var sqr = x*x; console.log(sqr)}</code></div>
+    <div><code>arw(20);</code></div>
+    </div>
+    <p class="text">בגלל שאחד התפקידים שמייעדים&nbsp; לפונקציות חץ הוא קיצור בכתיבת קוד - יש כמה צורות מקוצרות של פונקציות חץ שצריך להכיר</p>
+    <p class="text">א- כאשר יש רק פרמטר אחד שמועבר לפונקציה אין צורך בסוגריים עגולים שיקיפו את אזור הפרמטרים</p>
+    <div>
+    <div class="text"><code>//basic</code></div>
+    <div class="text"><code>vararw = (x)=&gt;{ varsqr = x*x; console.log("basix",sqr)}</code></div>
+    <div class="text"><code>arw(20);</code></div>
+    <div class="text"><code>//no Parentheses</code></div>
+    <div class="text"><code>vararw = x=&gt;{ varsqr = x*x; console.log("no Parentheses " , sqr)}</code></div>
+    <div class="text"><code>arw(20);</code></div>
+    <div class="text">&nbsp;</div>
+    <div class="text">ב- כאשר התוכן של הפונקציה הוא ביטוי ולא סדרת פקודות אין צורך בסוגריים מסולסלים שיעטפו את איזור הפונקציה</div>
+    <div class="text">&nbsp;</div>
+    <div>
+    <div class="text"><code>//no cruly brackets</code></div>
+    <div class="text"><code>arw = x=&gt;console.log("no cruly brackets " , x*x) ;</code></div>
+    <div class="text"><code>arw(20);</code></div>
+    <div>
+    <div class="text"><code>//no cruly brackets</code></div>
+    <div class="text"><code>arw = x=&gt;x*x ;</code></div>
+    <div class="text"><code>arw(20);</code></div>
+    <div class="text"><code></code></div>
+    <div class="text">ג- אם רוצים להחזיר אובייקט ולא ביטוי ולהנות מהיתרון&nbsp; של ביטול הצורך במילה השמורה&nbsp;</div>
+    <div class="text">return</div>
+    <div class="text">אז צריך להוסיף סוגריים עגולות שיעטפו את הסוגריים המסולסלות</div>
+    <div class="text">&nbsp;</div>
+    <div>
+    <div class="text">vararwAdvanced = ()=&gt;({name:"yoni"})</div>
+    <div class="text">console.log (arwAdvanced);</div>
+    <div class="text">&nbsp;</div>
+    <div class="text">&nbsp;של פונקציית חץ&nbsp; THIS הבנת&nbsp;</div>
+    <div class="text">&nbsp;</div>
+    <div class="text">&nbsp;</div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
     <div class="container">
         <div class="answer">
 
@@ -185,6 +187,207 @@
         var obj={
 
         }
+    </script>
+
+    <script>
+        
+        console.log('*********** regular  function *****************');
+        var obj = {
+
+            name: "obj1 here",
+            getname: function () {
+
+                console.log('refular fn this.name::', this.name)
+            },
+            getthis: function () {
+
+                console.log('refular fn this', this)
+            }
+
+        }
+
+
+
+        var obj2 = {
+
+            name: "obj2 here",
+            getname: obj.getname,
+            getthis: obj.getthis
+        }
+        var name = "gloal"
+        var getname = obj.getname
+        var getthis = obj.getthis
+
+        obj.getname();
+        obj.getthis();
+        obj.deep = {};
+        obj.deep.dg = obj.getthis;
+        obj.deep.dg();
+        obj2.getname();
+        obj2.getthis();
+        getname();
+        getthis();
+
+        console.log('*********** arrow function *****************');
+        var arw = {
+
+            name: "obj1 here",
+            getname: () => {
+
+                console.log('arw getname ::', this.name)
+            },
+            getthis: () => {
+
+                console.log('arw gethis', this)
+            }
+
+        }
+
+
+
+        var arw2 = {
+
+            name: "obj2 here",
+            getname: arw.getname,
+            getthis: arw.getthis
+        }
+
+
+        var arw3 = {
+            that: this,
+            name: "obj1 here",
+            getname: () => {
+
+                console.log('arrow fn this.name:: ', this.name)
+            },
+            getthis: () => {
+
+                console.log('arrow fn getthis ', this)
+            },
+            deepObj: {
+                getDeepThis: () => {
+                    console.log('arw3.deepObj.getDeepThis', this)
+                },
+                that: this
+            }
+
+        }
+
+
+        name = "gloal arrow"
+        getname = arw.getname
+        getthis = arw.getthis
+
+        arw.getname();
+        arw.getthis();
+        arw.deep = {};
+        arw.deep.dg = arw.getthis;
+        arw.deep.dg();
+        arw2.getname();
+        arw2.getthis();
+        arw3.getname;
+        arw3.getthis;
+        console.log('arw3.that', arw3.that);
+        arw3.deepObj.getDeepThis();
+        console.log('arw3.deepObj.that', arw3.deepObj.that);
+        getname();
+        getthis();
+
+        console.log('************* another look on arrow function and this ***************');
+
+        function Person() {
+            // The Person() constructor defines `this` as an instance of itself.
+            this.age = 0;
+
+            setTimeout(function growUp() {
+                // In non-strict mode, the growUp() function defines `this` 
+                // as the global object (because it's where growUp() is executed.), 
+                // which is different from the `this`
+                // defined by the Person() constructor. 
+                this.age++;
+                console.log('regular function timeout this.age', this.age, this);
+            }, 1000);
+            setTimeout(() => {
+                // In non-strict mode, the growUp() function defines `this` 
+                // as the global object (because it's where growUp() is executed.), 
+                // which is different from the `this`
+                // defined by the Person() constructor. 
+                this.age++;
+                console.log('arow function timeout this.age', this.age, this);
+            }, 1000);
+            this.getThis = function () {
+                return this
+            };
+        }
+
+        var p = new Person();
+        console.log('p.getThis', p.getThis());
+
+        //create a tools object
+        var tools = {
+            message: 'Hello from this.message!',
+            asyncTask: function () {
+
+                //simulate an asynchronous task
+                setTimeout(() => {
+                    console.log('THE MESSAGE IS: ' + this.message, this);
+                    console.log(
+                        'why its happen ? because the setTimeOut was inside a regular functin - and in regular function the -this- is the object that owner here'
+                    );
+                }, 1000);
+            }
+        };
+
+        //call asyncTask
+        tools.asyncTask();
+
+        console.log('************* map with arrow and with regular function ***************');
+
+        var materials = [
+            'Hydrogen',
+            'Helium',
+            'Lithium',
+            'Beryllium'
+        ];
+
+        console.log('in the next case there is no difrent because we didnt use this keyword');
+        var map1 = materials.map(material => material.length)
+        console.log('map with arrow', map1);
+        var map2 = materials.map(function (material) {
+            return material.length
+        })
+        console.log('map with regular fn', map2);
+
+
+        addObj = {
+            sum:2,
+            add: function () {
+                var map1 = materials.map(material => material+" "+this.sum)
+                console.log('addObj map with arrow', map1);
+                var map2 = materials.map(function (material) {
+                    return material+" "+this.sum
+                })
+
+                console.log('addObj map with regular fn', map2);
+            }
+        }
+
+        addObj.add();
+
+
+
+        console.log('************* shurtcut for regular function ***************');
+        // not work out of objects shoutOut=(){    }
+        objShort = {
+            name: "obj 3 here",
+            shout() {
+                console.log('objShort::', this.name)
+
+            }
+        }
+        objShort.shout();
+    
+    
     </script>
 
 </body>
