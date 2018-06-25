@@ -1,0 +1,108 @@
+
+scope and context
+In JavaScript, the concept of scope refers to the visibility of variables.
+ On the other hand, the concept of context is used to mean: “the object to which a method belongs”. 
+ That may sound like an odd statement, but it is accurate. The only time we care about context is inside a function.
+  Period. Inside a function, the “this” keyword is very important.
+   It refers to the object to which that function belongs. 
+
+
+
+   An arrow function expression has a shorter syntax than a function expression
+    and does not have its own this, arguments, super, or new.target.
+    These function expressions are best suited for non-method functions,
+     and they cannot be used as constructors.
+
+
+
+     Javascript is a late binding language. In fact, it is very late binding. Not only is this not bound during compile time, it is not even bound during runtime (as most other late binding languages do). In javascript, this is bound during call time.
+
+The binding rules are quite different from most other OO languages which is why it seems to confuse a lot of people not familiar with javascript.
+
+Basically, how and where you use this in the code does not affect how this behaves (it does not matter if it's a standalone function, an object literal etc.) what determines the value of this is how you call the function.
+
+The rules are:
+
+1 - When a function is called as a constructor, a new object is created and this is bound to that object. For example:
+
+function Foo () {
+    this.bar = 1; // when called with the new keyword
+                  // this refers to the object just created
+}
+new Foo().bar;
+2 - When called as an object method this refers to the object the method belongs to. Basically the name before the last dot. For example:
+
+foo.bar = 1;
+foo.baz = function () {
+    alert(this.bar); // this refers to foo when called as foo.baz()
+}
+foo.baz();
+3 - If used outside of any function or if a function is not called as a method this refers to the global object. The javascript spec doesn't give a name to the global object apart from saying that one exists but for browsers it is traditionally called window. For example:
+
+bar = 1;
+alert(this.bar); // this refers to the global object
+foo = {
+    bar: this.bar // also global object
+}
+function foofoo () {
+    alert(this.bar); // also refers to the global object
+}
+foofoo();
+4 - In an event handler (such as onclick etc.) this refers to the DOM element that triggered the event. Or for events not associated with the DOM like setTimeout or XMLHTTPRequest, this refers to the global object. For example:
+
+foo.bar = 1;
+foo.baz = function () {
+    alert(this.bar); // this would normally be foo but if this
+                     // function is assigned to an event it would
+                     // point to the element that triggered the event
+}
+somediv.bar = 2;
+somediv.onclick = foo.baz; // clicking on somedive alerts 2 instead of 1
+5 - Finally, when a function is called using either the call() or apply() methods this can be reassigned to anything whatsoever (google "mdn function.prototype.call"). In this way, any object in javascript can borrow/steal another objects' methods. For example:
+
+cat = {
+    type: "cat",
+    explain: function () {
+        return "I am a " + this.type;
+    }
+}
+dog = {
+    type: "dog"
+}
+cat.explain.call(dog); // returns "I am a dog"
+Update:
+
+With Function.bind() in modern javascript implementations we now have another rule:
+
+6 - Functions can also explicitly bind this to an object using the bind() method. The bind method returns a new instance of the function where this is bound to the argument passed to bind. For example:
+
+function explain () {
+    return "I am a " + this.type;
+}
+dog = {
+    type: "dog"
+}
+var dog_explain = explain.bind(dog);
+dog_explain(); // returns "I am a dog"
+More update:
+
+ECMAscript 5 introduced strict mode which changes the meaning of this in functions that isn't called as a method or called with call or apply so we have to add a new rule:
+
+7 - When in strict mode, this isn't allowed to refer to the global object (window in browsers). So when a function is not called as a method or this isn't bound to anything manually via call or apply or bind then this becomes undefined:
+
+"use strict";
+function foo () {
+    return this;
+}
+foo(); // returns undefined instead of the global object
+Even more update:
+
+ECMAscript 6 introduced arrow functions. Arrow functions change how this behaves by binding early.
+
+8 - In arrow functions, this is bound at the time the function is declared. So this in the following code:
+
+var x = () => {return this};
+behaves as if the function is declared like the following code:
+
+var x = function () {return this}.bind(this);
+Note that since the this in arrow functions are bound at the time the function is declared you can't use arrow functions if you want to use inheritance. That's because the this in the function will always point to the parent object and will never point to the child object. That means that the only way to make inheritance work with arrow function is to override all arrow functions from the parent object.
