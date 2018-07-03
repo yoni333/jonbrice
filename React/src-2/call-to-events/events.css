@@ -1,0 +1,9 @@
+.buttons , .buttons>button {
+    margin:20px;
+    font-size: 30px;
+    border:1px rgb(90, 90, 158) solid;
+}
+
+.results{
+    min-height:200px;
+}
