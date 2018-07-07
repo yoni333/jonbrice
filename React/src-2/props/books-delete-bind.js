@@ -2,18 +2,7 @@ import React, { Component } from 'react';
 
 
 class Book extends Component {
-    constructor(props){
-        super(props)
-    }
-
-    deleteBook = (e)=>{
-        console.log(this)
-        console.log(e)
-        console.log(e.target)
-        console.log(e.target.bookid)
-        this.props.deleteBook(e.target.bookid);
-
-    }
+   
     render() {
         let style = {
             display: "inline-block",
@@ -43,11 +32,14 @@ class Book extends Component {
                     year :  {this.props.book.year}
                 </div>
                 <hr/>
+                {this.props.deleteBook !== undefined?
                 <div>
                     delete ->  
-                    <span onClick={this.deleteBook} bookid={this.props.book.bookId} style={delBtn}>X</span>
-
+              
+                    <span onClick={  ()=>this.props.deleteBook()} bookid={this.props.book.bookId} style={delBtn}>X</span>
+                   
                 </div>
+                :null}
             </div>
 
         )
@@ -57,7 +49,6 @@ class Book extends Component {
 class LibraryDelete extends Component {
 
     books;
-    booksComponentsArray;
     constructor(props){
         super(props);
         this.books = [
@@ -67,7 +58,9 @@ class LibraryDelete extends Component {
             { bookId:"7843" ,name:"idk ok?",auther: "dan renren", cost: 100, year: 2002 },
         ];
 
-        this.state={booksComponentsArray = this.getBook(this.books)};
+       
+
+        this.state={booksComponentsArray : this.getBook(this.books) ,deletedBooks:[]};
 
         this.deleteBook = this.deleteBook.bind(this);
     }
@@ -79,21 +72,27 @@ class LibraryDelete extends Component {
         //forEach was a better choice here
 
         for (let book of books) {
-            componentsArr.push(<Book key={counter} book={book} deleteBook={this.deleteBook} />)
+            componentsArr.push(<Book key={counter} book={book} deleteBook={()=>this.deleteBook(book)} />)
             counter++;
         }
 
         return componentsArr;
     }
 
-    deleteBook(bookId){
+    deleteBook(book){
         console.log(this)     ;
-        console.log(bookId)     ;
+        console.log(book)     ;
+       
+     
         this.books.forEach( (obj ,index) => {
-            if (obj.bookId === bookId){
+            if (obj.bookId === book.bookId){
                  this.books.splice(index ,1 );
                  //update the array of components
-                 this.setState({ booksComponentsArray:this.getBook(this.books)}) 
+                 let deletedBooks = this.state.deletedBooks.slice();
+                 deletedBooks.push(<Book key={deletedBooks.length} book={book}  />)
+                 this.setState({ 
+                     booksComponentsArray:this.getBook(this.books) ,
+                    deletedBooks:deletedBooks}) 
             }
         });
         //same and better
@@ -106,15 +105,18 @@ class LibraryDelete extends Component {
     //add deleteBook  -- how to bind event ?
 
     render() {
-     
+        const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
         return (
             <div>
 
                 <div>
 
-                    {this.booksComponentsArray}
+                    {this.state.booksComponentsArray}
 
                 </div>
+
+                <hr/>
+                {this.state.deletedBooks}
             </div>
 
 
