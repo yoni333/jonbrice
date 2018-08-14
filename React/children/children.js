@@ -1,7 +1,7 @@
 import React, { Component ,Children } from 'react';
 
-function SimpleChild(){
-    return <h4> i was passed as child </h4>
+function SimpleChild(name){
+    return <h4> i was passed as child {name}</h4>
 }
 class SingleChild extends Component {
   
@@ -24,7 +24,7 @@ class SingleChild extends Component {
 class ChildrenMain extends Component {
 
    
-
+    name="from ChildrenMain"
     render(){
 
         return(
@@ -36,7 +36,7 @@ class ChildrenMain extends Component {
                 <hr/>
                 <SingleChild> 
                    {/* <div>hy</div> */}
-                   <SimpleChild/>
+                   <SimpleChild name={this.name}/>
                  </SingleChild>
             
             </div>
