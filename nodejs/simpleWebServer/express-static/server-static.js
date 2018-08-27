@@ -1,12 +1,10 @@
 //npm dependencies  - express , body-parser 
 
 var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
 
 var app = express();
 
-app.use(express.static('public'))
+app.use(express.static('public')) //magic line to serve files
 
 app.get('/hello', function (req, res) {
     res.send('Hello World!')
@@ -14,22 +12,12 @@ app.get('/hello', function (req, res) {
 
 
 app.get('/team', function (req, res) {
-    res.send('Hello World!')
+    res.set('Content-Type', 'text/html');
+    let answer= '<h4>Hello World!</h4>';
+    answer+='<p>our team</p>'
+    res.send(answer) 
+    
 })
-
-
-app.get('/data', function (req, res) {
-    res.header('Content-Type', 'application/json');
-    res.json(
-        {
-            team: [
-                { name: 'yuval', age: 32, job: 'fed' },
-                { name: 'ron', age: 21, job: 'devops' }
-            ]
-        }
-    );
-})
-
 
 
 app.listen(3000);
